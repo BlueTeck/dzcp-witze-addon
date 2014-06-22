@@ -1,0 +1,40 @@
+</table>
+<table class="mainContent" cellspacing="0">
+<tr>
+  <td>
+    <form id="jokesForm" name="jokesForm" action="?admin=jokes&amp;do=[do]" method="post" onsubmit="return(DZCP.submitButton())">
+      <table class="hperc" cellspacing="1">
+        <tr>
+          <td class="contentHead" align="center" colspan="2"><span class="fontBold">[head]</span></td>
+        </tr>
+        [error]
+        <tr>
+          <td class="contentMainTop" style="width:25%"><span class="fontBold">[nautor]:</span></td>
+          <td class="contentMainFirst" style="width:75%;text-align:center"><span class="fontBold">[autor]</span></td>
+        </tr>
+		        <tr>
+          <td class="contentMainTop" style="width:25%"><span class="fontBold">[status]:</span></td>
+          <td class="contentMainFirst" style="width:75%;text-align:left"><span class="fontBold">[options]<br />&emsp;&emsp;[dropdown_date]</span></td>
+        </tr>
+        <tr>
+          <td class="contentMainTop"><span class="fontBold">[ntitel]:</span></td>
+          <td class="contentMainFirst" align="center">
+            <input type="text" name="titel" value="[titel]" class="inputField_dis"
+            onfocus="this.className='inputField_en';"
+            onblur="this.className='inputField_dis';">
+          </td>
+        </tr>
+        <tr>
+          <td class="contentMainFirst" colspan="2" align="center">
+            <textarea id="jokes" name="jokes" cols="0" rows="0" class="editorStyleMini">[joketext]</textarea>
+          </td>
+        </tr>
+        <tr>
+          <td class="contentBottom" colspan="2"><input id="contentSubmit" type="submit" value="[button]" class="submit" /></td>
+        </tr>
+      </table>
+    </form>
+  </td>
+</tr>
+</table>
+<table class="hperc" cellspacing="0">

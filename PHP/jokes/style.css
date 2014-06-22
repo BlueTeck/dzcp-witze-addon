@@ -1,0 +1,48 @@
+.hover {
+	background: url('../jokes/star.png'); 
+	z-index: 1;
+}
+
+/*span {
+	float: left;
+	cursor: pointer;
+}
+
+.clearleft {
+	clear: left;
+}
+
+div { 
+	display: block;
+	width: 120px;
+	padding-top: 10px;
+	height: 16px;
+	margin: 0;
+}
+
+.floatleft {
+	float: left;
+}
+
+.highlight {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	position: relative;
+	bottom: 9px;
+	color: #93784b;
+	font-weight: bold;
+}
+
+.star_rating {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	color: #93784b;
+	float: left;
+	width: 100px;
+	position: relative;
+	top: 10px;
+}
+*/
+img {
+	border: 0;
+}
