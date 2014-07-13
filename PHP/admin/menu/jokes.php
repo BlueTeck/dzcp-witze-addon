@@ -1,8 +1,4 @@
 <?php
-/////////// ADMINNAVI \\\\\\\\\
-// Typ:       contentmenu
-// Rechte:    permission('jokes')
-///////////////////////////////
 if(_adminMenu != 'true') exit;
 
     $where = $where.': '._jokes;
@@ -340,7 +336,7 @@ $maxdate = mktime(23, 59, 59, $month+1, -1, $year);
                : '<a href="?admin=jokes&amp;status='.$_GET['status'].'&amp;do=public&amp;id='.$get['id'].'&amp;what=set"><img src="../inc/images/nonpublic.gif" alt="" title="'._public.'" /></a>';
 
 //rating
-$votee = mysql_fetch_array(db("SELECT avg(pkt) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'].""));
+$votee = db("SELECT avg(pkt) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'],true,true);
 $rating = round($votee[0],1).'/5';		 
 //Status
 		  $heute = mktime(23, 59, 59, date("m"), date("d"), date("Y"));		  

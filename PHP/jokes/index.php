@@ -2,6 +2,7 @@
 ## OUTPUT BUFFER START ##
 include("../inc/buffer.php");
 ## INCLUDES ##
+include(basePath."/inc/debugger.php");
 include(basePath."/inc/config.php");
 include(basePath."/inc/bbcode.php");
 ## SETTINGS ##
@@ -46,8 +47,8 @@ $show = show($dir."/default", array("top" => "Top 10 "._jokes,
 break;
 //#####################################################################################################
 case 'show';
-if (is_numeric($_GET[id])) {
- $qry = db("SELECT * FROM ".$sql_prefix."jokes WHERE id LIKE ".$_GET[id]);
+if (is_numeric($_GET['id'])) {
+ $qry = db("SELECT * FROM ".$sql_prefix."jokes WHERE id LIKE ".$_GET['id']);
 }
         while($get = _fetch($qry))
 		{ 
@@ -62,7 +63,7 @@ if($bv=='0') {
 <script type="text/javascript" src="script.js"></script>
 <?php
 
-$votee = mysql_fetch_array(db("SELECT avg(pkt) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'].""));
+$votee = db("SELECT avg(pkt) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'],true,true);
 $rating = round($votee[0],1);
 
 if($rating > 0) { $hover1 = 'class="hover"';} else { $hover1 = ""; }
@@ -86,7 +87,7 @@ if($rating > 4.5) { $hover5 = 'class="hover"';} else { $hover5 = ""; }
 	?>
 <link rel="stylesheet" type="text/css" href="style.css">
 <?php
-	$votee = mysql_fetch_array(db("SELECT avg(pkt) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'].""));
+	$votee = db("SELECT avg(pkt) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'],true,true);
 $rating = round($votee[0],1);
 
 if($rating > 0) { $hover1 = 'class="hover"';} else { $hover1 = ""; }
@@ -120,7 +121,7 @@ if($bv=='0') {
 		?>
 <link rel="stylesheet" type="text/css" href="style.css">
 <?php
-	$votee = mysql_fetch_array(db("SELECT avg(pkt) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'].""));
+	$votee = db("SELECT avg(pkt) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'],true,true);
 $rating = round($votee[0],1);
 
 if($rating > 0) { $hover1 = 'class="hover"';} else { $hover1 = ""; }
@@ -141,14 +142,14 @@ if($rating > 4.5) { $hover5 = 'class="hover"';} else { $hover5 = ""; }
 		$ratinga = _jokes_login;
 	}	
 		
-$votee = mysql_fetch_array(db("SELECT avg(pkt),count(*) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'].""));
+$votee = db("SELECT avg(pkt),count(*) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'],true,true);
 $rating = 'Rating: '.round($votee[0],1).'/5  <i>('.$votee[1].' Votes)</i>';
 
 //Rechte
 
 if(isset($userid)) {
-$rechteuser = mysql_fetch_array(db("SELECT jokes FROM ".$db['permissions']." WHERE user LIKE ".$userid.""));
-$rechteadmin = mysql_fetch_array(db("SELECT level FROM ".$db['users']." WHERE id LIKE ".$userid.""));
+$rechteuser = db("SELECT jokes FROM ".$db['permissions']." WHERE user LIKE ".$userid,true,true);
+$rechteadmin = db("SELECT level FROM ".$db['users']." WHERE id LIKE ".$userid,true,true);
 if($rechteuser[0] == 1 OR $rechteadmin[0] == 4) { 
 $rechte = '<div align="right" style="vertical-align:middle"><a href="../admin/?admin=jokes&status=id&id='.$get[id].'"><img src="../inc/images/edit.gif" width="16" height="16" /> bearbeiten</a></div><br>';
 //$rechte = "Du hast Rechte";
@@ -184,7 +185,7 @@ case 'toplist';
 ?>
 <link rel="stylesheet" type="text/css" href="style.css">
 <?php
-	$votee = mysql_fetch_array(db("SELECT avg(pkt) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'].""));
+	$votee = db("SELECT avg(pkt) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'],true,true);
 $rating = round($votee[0],1);
 
 if($rating > 0) { $hover1 = 'class="hover"';} else { $hover1 = ""; }
@@ -193,7 +194,7 @@ if($rating > 2.5) { $hover3 = 'class="hover"';} else { $hover3 = ""; }
 if($rating > 3.5) { $hover4 = 'class="hover"';} else { $hover4 = ""; }
 if($rating > 4.5) { $hover5 = 'class="hover"';} else { $hover5 = ""; }
 	$newrating = '<img src="star_blank.png" alt=""  '.$hover1.'/><img src="star_blank.png" alt=""  '.$hover2.'/><img src="star_blank.png" alt=""  '.$hover3.'/><img src="star_blank.png" alt=""  '.$hover4.'/><img src="star_blank.png" alt=""  '.$hover5.'/>';		
-$votee = mysql_fetch_array(db("SELECT avg(pkt) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'].""));
+$votee = db("SELECT avg(pkt) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'],true,true);
 $rating =$newrating." ".round($votee[0],1).'/5';
 		          
 				  $class = ($color % 2) ? "contentMainSecond" : "contentMainFirst"; $color++;
@@ -221,7 +222,7 @@ case 'floplist';
 ?>
 <link rel="stylesheet" type="text/css" href="style.css">
 <?php
-	$votee = mysql_fetch_array(db("SELECT avg(pkt) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'].""));
+	$votee = db("SELECT avg(pkt) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'],true,true);
 $rating = round($votee[0],1);
 
 if($rating > 0) { $hover1 = 'class="hover"';} else { $hover1 = ""; }
@@ -230,7 +231,7 @@ if($rating > 2.5) { $hover3 = 'class="hover"';} else { $hover3 = ""; }
 if($rating > 3.5) { $hover4 = 'class="hover"';} else { $hover4 = ""; }
 if($rating > 4.5) { $hover5 = 'class="hover"';} else { $hover5 = ""; }
 	$newrating = '<img src="star_blank.png" alt=""  '.$hover1.'/><img src="star_blank.png" alt=""  '.$hover2.'/><img src="star_blank.png" alt=""  '.$hover3.'/><img src="star_blank.png" alt=""  '.$hover4.'/><img src="star_blank.png" alt=""  '.$hover5.'/>';		
-$votee = mysql_fetch_array(db("SELECT avg(pkt) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'].""));
+$votee = db("SELECT avg(pkt) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'],true,true);
 $rating =$newrating." ".round($votee[0],1).'/5';
 		          
 				  $class = ($color % 2) ? "contentMainSecond" : "contentMainFirst"; $color++;
@@ -427,7 +428,7 @@ $max = mktime(23, 59, 59, $month+1, -1, $year);
 ?>
 <link rel="stylesheet" type="text/css" href="style.css">
 <?php
-	$votee = mysql_fetch_array(db("SELECT avg(pkt) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'].""));
+	$votee = db("SELECT avg(pkt) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'],true,true);
 $rating = round($votee[0],1);
 
 if($rating > 0) { $hover1 = 'class="hover"';} else { $hover1 = ""; }
@@ -436,7 +437,7 @@ if($rating > 2.5) { $hover3 = 'class="hover"';} else { $hover3 = ""; }
 if($rating > 3.5) { $hover4 = 'class="hover"';} else { $hover4 = ""; }
 if($rating > 4.5) { $hover5 = 'class="hover"';} else { $hover5 = ""; }
 	$newrating = '<img src="star_blank.png" alt=""  '.$hover1.'/><img src="star_blank.png" alt=""  '.$hover2.'/><img src="star_blank.png" alt=""  '.$hover3.'/><img src="star_blank.png" alt=""  '.$hover4.'/><img src="star_blank.png" alt=""  '.$hover5.'/>';		
-$votee = mysql_fetch_array(db("SELECT avg(pkt) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'].""));
+$votee = db("SELECT avg(pkt) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'],true,true);
 $rating =$newrating." ".round($votee[0],1).'/5';
 		          
 				  $class = ($color % 2) ? "contentMainSecond" : "contentMainFirst"; $color++;

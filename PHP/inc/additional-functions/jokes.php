@@ -53,7 +53,7 @@ if($bv=='0') {
 <script type="text/javascript" src="../jokes/script.js"></script>
 <?php
 
-$votee = mysql_fetch_array(db("SELECT avg(pkt) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'].""));
+$votee = db("SELECT avg(pkt) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'],true,true);
 $rating = round($votee[0],1);
 
 if($rating > 0) { $hover1 = 'class="hover"';} else { $hover1 = ""; }
@@ -86,7 +86,7 @@ img {
 }
     </style>
 <?php
-	$votee = mysql_fetch_array(db("SELECT avg(pkt) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'].""));
+	$votee = db("SELECT avg(pkt) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'],true,true);
 $rating = round($votee[0],1);
 
 if($rating > 0) { $hover1 = 'class="hover"';} else { $hover1 = ""; }
@@ -117,7 +117,7 @@ img {
 }
     </style>
 <?php
-	$votee = mysql_fetch_array(db("SELECT avg(pkt) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'].""));
+	$votee = db("SELECT avg(pkt) AS rating FROM ".$sql_prefix."joke_rating WHERE jid LIKE ".$get['id'],true,true);
 $rating = round($votee[0],1);
 
 if($rating > 0) { $hover1 = 'class="hover"';} else { $hover1 = ""; }
